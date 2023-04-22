@@ -1,0 +1,41 @@
+{
+    "name": "ts-wscore",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "build": "npx tsc && tsc-alias",
+        "start": "npx ts-node src/index.ts",
+        "dev": "npx ts-node-dev --respawn --transpile-only src/index.ts",
+        "dev-2": "concurrently \"npx tsc --watch\" \"tsc-alias -w\" \"nodemon -q dist/index.js\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/CarlosX/ts-wscore.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/CarlosX/ts-wscore/issues"
+    },
+    "homepage": "https://github.com/CarlosX/ts-wscore#readme",
+    "devDependencies": {
+        "@types/node": "^18.15.13",
+        "concurrently": "^8.0.1",
+        "module-alias": "^2.2.2",
+        "nodemon": "^2.0.22",
+        "tsc-alias": "^1.8.5",
+        "typescript": "^5.0.4"
+    },
+    "dependencies": {
+        "@types/uws": "^0.13.3",
+        "@types/winston": "^2.4.4",
+        "dotenv": "^16.0.3",
+        "http": "^0.0.1-security",
+        "reflect-metadata": "^0.1.13",
+        "uuid": "^9.0.0",
+        "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.23.0",
+        "winston": "^3.8.2",
+        "winston-daily-rotate-file": "^4.2.1"
+    }
+}
