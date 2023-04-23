@@ -12,14 +12,18 @@ class AccountHandler extends Handler {
 
     @PacketHandler(PacketOpcode.LOGIN)
     public handlerLogin(data?: any) {
-        Logger.info(`[${this.uuid}] [${GetPacketKeyByValue(PacketOpcode.LOGIN)}] ${JSON.stringify(data)}`)
-        this.Send(PacketOpcode.LOGIN, 'Login');
+        Logger.info(
+            `[${this.uuid}] [${GetPacketKeyByValue(
+                PacketOpcode.LOGIN
+            )}] ${JSON.stringify(data)}`
+        )
+        this.Send(PacketOpcode.LOGIN, 'Login')
     }
 
     @PacketHandler(PacketOpcode.REGISTER)
     public handlerRegister(data?: any) {
         Logger.info(`[${this.uuid}] [${PacketOpcode.REGISTER}]`)
-        this.Send(PacketOpcode.REGISTER, 'Register');
+        this.Send(PacketOpcode.REGISTER, 'Register')
     }
 }
 

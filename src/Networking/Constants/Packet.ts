@@ -1,0 +1,1 @@
+export const PACKET_META_KEY = 'PacketHandler'

@@ -2,7 +2,7 @@ import 'reflect-metadata'
 
 class Handler {
     constructor() {}
-    [x: string]: (data?: any, args?: any) => void;
+    [x: string]: (...args: any[]) => unknown;
 }
 
 export default Handler

@@ -4,6 +4,7 @@ import SocketSession from './Networking/SocketSession'
 import { v4 as uuidv4 } from 'uuid'
 import Logger from '@services/LoggerService'
 import dotenv from 'dotenv'
+import { PacketData, WSWebSocket } from './typings/Socket';
 dotenv.config()
 
 // read dir Handlers and import all files
@@ -19,19 +20,19 @@ dotenv.config()
 
 const app = uWS.App()
 app.ws('/*', {
-    open: (ws: any) => {
+    open: (ws: WSWebSocket) => {
         const uuid = uuidv4()
         Logger.log(`new Connection ${uuid}`)
         ws.session = new SocketSession(ws, uuid)
         ws.send(JSON.stringify({ opcode: '0', data: 'Hi' }))
     },
-    message: (ws: any, _data) => {
-        let data: any = ''
+    message: (ws: WSWebSocket, _data) => {
+        let data: PacketData = null
         if (typeof _data === 'string') {
             data = JSON.parse(_data)
         } else {
-            data = Buffer.from(_data).toString()
-            data = JSON.parse(data)
+            const _tmpBuffer = Buffer.from(_data).toString()
+            data = JSON.parse(_tmpBuffer)
         }
 
         if (!ws.session.HandleMessage(data)) {
@@ -40,7 +41,7 @@ app.ws('/*', {
             )
         }
     },
-    close: (ws: any, code, reason) => {
+    close: (ws: WSWebSocket, code, reason) => {
         Logger.log(`Closed connection: ${ws.session.uuid} [${code}] ${reason}`)
     },
 })
